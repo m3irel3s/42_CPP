@@ -8,8 +8,15 @@ int main(void)
 
 	while (!std::cin.eof())
 	{
+		std::cout << "Enter command: ";
 		std::getline(std::cin, cmd);
 		if (cmd == "ADD")
-			std::cout << "Hello" << std::endl;
+			std::cout << "Hello from add" << std::endl;
+		else if (cmd == "SEARCH")
+			std::cout << "Hello from search" << std::endl;
+		else if (cmd == "EXIT")
+			break;
+		else
+			std::cout << "\nInvalid command\n" << std::endl;
 	}
 }
