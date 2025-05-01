@@ -8,13 +8,17 @@
 class PhoneBook 
 {
 	public:
-		PhoneBook(void);
-		~PhoneBook(void);
+		PhoneBook();
+		~PhoneBook();
 
-		void	add(void);
-		void	search(void);
+		void	AddContact();
+		void	SearchContact();
+
+		void	FillContacts();
+
 	private:
 		Contact	_contacts[MAX_CONTACTS];
+		size_t	_count;
 };
 
 #endif

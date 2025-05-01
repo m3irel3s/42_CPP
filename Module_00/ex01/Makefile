@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/04/30 16:38:29 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/01 12:54:36 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,24 @@ $(BUILD_PATH)/%.o: %.cpp
 
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+
+#==============================================================================#
+#                                  DEBUGGING                                   #
+#==============================================================================#
+
+gdb: all $(NAME)
+	tmux split-window -h "gdb --tui --args ./$(NAME)"
+	tmux resize-pane -L 5
+	make get_log
+
+get_log:
+	rm -f gdb.txt
+	touch gdb.txt
+	@if command -v lnav; then \
+		lnav gdb.txt; \
+	else \
+		tail -f gdb.txt; \
+	fi
 
 #==============================================================================#
 #                                CLEANING RULES                                #
