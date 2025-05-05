@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/05/05 11:50:29 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/05 13:19:05 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 #                                  MODULE 00                                   #
 #==============================================================================#
 
-NAME        = zombie
+NAME        = zombieHorde
 
 #==============================================================================#
 #                                FLAGS & COMMANDS                              #
@@ -32,7 +32,7 @@ MKDIR       = mkdir -p
 BUILD_PATH  = .build
 
 SRCS        = main.cpp \
-			Zombie.cpp \
+			zombie.cpp \
 			zombieHorde.cpp \
 
 INCLUDES    = -I.
@@ -56,6 +56,12 @@ $(NAME): $(OBJS)
 #==============================================================================#
 
 GDB_FILE     = gdb.txt
+
+VAL_LEAKS    = --leak-check=full --show-leak-kinds=all --trace-children=yes
+VAL_FDS      = --track-fds=yes --track-origins=yes
+
+val: $(NAME)
+	valgrind $(VAL_LEAKS) $(VAL_FDS) ./$(NAME)
 
 gdb: all $(NAME)
 	tmux split-window -h "gdb --tui --args ./$(NAME)"

@@ -2,6 +2,10 @@
 
 int main(void)
 {
-	Zombie zombie;
-}
+	Zombie		*horde;
+	int			n = 10;
+	std::string	name = "Miguel";
 
+	horde = zombieHorde(n, name);
+	delete[] horde;
+}
