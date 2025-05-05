@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/05/05 13:19:05 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/05 14:32:41 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ MKDIR       = mkdir -p
 BUILD_PATH  = .build
 
 SRCS        = main.cpp \
-			zombie.cpp \
+			Zombie.cpp \
 			zombieHorde.cpp \
 
 INCLUDES    = -I.
