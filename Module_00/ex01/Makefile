@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/05/01 12:54:36 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/01 16:48:39 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,18 +55,20 @@ $(NAME): $(OBJS)
 #                                  DEBUGGING                                   #
 #==============================================================================#
 
+GDB_FILE     = gdb.txt
+
 gdb: all $(NAME)
 	tmux split-window -h "gdb --tui --args ./$(NAME)"
 	tmux resize-pane -L 5
 	make get_log
 
 get_log:
-	rm -f gdb.txt
-	touch gdb.txt
+	rm -f $(GDB_FILE)
+	touch $(GDB_FILE)
 	@if command -v lnav; then \
-		lnav gdb.txt; \
+		lnav $(GDB_FILE; \)
 	else \
-		tail -f gdb.txt; \
+		tail -f $(GDB_FILE; \)
 	fi
 
 #==============================================================================#
@@ -74,7 +76,7 @@ get_log:
 #==============================================================================#
 
 clean:
-	$(RM) $(BUILD_PATH)
+	$(RM) $(BUILD_PATH) $(GDB_FILE)
 
 fclean: clean
 	$(RM) $(NAME)

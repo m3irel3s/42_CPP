@@ -7,10 +7,10 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook(){};
 
-static std::string	TrimContactField(std::string str);
-static void			PrintSearchMenu();
+static std::string	trimContactField(std::string str);
+static void			printSearchMenu();
 
-void PhoneBook::AddContact()
+void PhoneBook::addContact()
 {
 	std::string	firstName, lastName, nickName, darkestSecret, phoneNumber;
 	size_t		index;
@@ -35,26 +35,26 @@ void PhoneBook::AddContact()
 		return ;
 	}
 
-	_contacts[index].SetAll(firstName, lastName, nickName, darkestSecret,
+	_contacts[index].setAll(firstName, lastName, nickName, darkestSecret,
 	phoneNumber);
 	_count++;
 
 	std::cout << "\nContact added successfully!" << std::endl;
 }
 
-void PhoneBook::SearchContact()
+void PhoneBook::searchContact()
 {
 	std::string	input;
 	size_t		index;
 
-	PrintSearchMenu();
+	printSearchMenu();
 	
 	for (size_t i = 0; i < MAX_CONTACTS && i < _count; i++)
 	{
 		std::cout << "|" << std::setw(10) <<  i + 1 << "|";
-		std::cout << std::setw(10) << TrimContactField(_contacts[i].GetFirstName()) << "|";
-		std::cout << std::setw(10) << TrimContactField(_contacts[i].GetLastName()) << "|";
-		std::cout << std::setw(10) << TrimContactField(_contacts[i].GetNickName()) << "|";
+		std::cout << std::setw(10) << trimContactField(_contacts[i].getFirstName()) << "|";
+		std::cout << std::setw(10) << trimContactField(_contacts[i].getLastName()) << "|";
+		std::cout << std::setw(10) << trimContactField(_contacts[i].getNickName()) << "|";
 		std::cout << std::endl;
 	}
 
@@ -66,11 +66,11 @@ void PhoneBook::SearchContact()
 		index = input[0] - '0';
 		if (index >= 1 && index <= _count)
 		{
-			std::cout << "\nFirst name: " << _contacts[index -1].GetFirstName() << std::endl;
-			std::cout << "Last name: " << _contacts[index -1].GetLastName() << std::endl;
-			std::cout << "Nickname: " << _contacts[index -1].GetNickName() << std::endl;
-			std::cout << "Darkest secret: " << _contacts[index -1].GetDarkestSecret() << std::endl;
-			std::cout << "Phone number: " << _contacts[index -1].GetPhoneNumber() << std::endl;
+			std::cout << "\nFirst name: " << _contacts[index -1].getFirstName() << std::endl;
+			std::cout << "Last name: " << _contacts[index -1].getLastName() << std::endl;
+			std::cout << "Nickname: " << _contacts[index -1].getNickName() << std::endl;
+			std::cout << "Darkest secret: " << _contacts[index -1].getDarkestSecret() << std::endl;
+			std::cout << "Phone number: " << _contacts[index -1].getPhoneNumber() << std::endl;
 		}
 		else
 			std::cout << "\n\tIndex is out of range" << std::endl;
@@ -79,7 +79,7 @@ void PhoneBook::SearchContact()
 		std::cout << "\n\tInvalid input, enter a number between 1 and " << MAX_CONTACTS << std::endl;
 }
 
-static void	PrintSearchMenu()
+static void	printSearchMenu()
 {
 	std::cout << "\n\t\tSEARCH MENU\n" << std::endl;
 	std::cout << " -------------------------------------------" << std::endl;
@@ -90,7 +90,7 @@ static void	PrintSearchMenu()
 	std::cout << " -------------------------------------------" << std::endl;
 }
 
-static std::string	TrimContactField(std::string str)
+static std::string	trimContactField(std::string str)
 {
 	if(str.length() > 9)
 		return (str.substr(0, 9) + ".");
@@ -98,7 +98,7 @@ static std::string	TrimContactField(std::string str)
 		return (str);
 }
 
-void PhoneBook::FillContacts()
+void PhoneBook::fillContacts()
 {
 	const std::string names[8] = {"Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Hank"};
 	const std::string lastNames[8] = {"Smith", "Jones", "Taylor", "Brown", "White", "Black", "Green", "Clark"};
@@ -114,7 +114,7 @@ void PhoneBook::FillContacts()
 
 	for (int i = 0; i < MAX_CONTACTS; i++)
 	{
-		_contacts[i].SetAll(names[i], lastNames[i], nicknames[i],
+		_contacts[i].setAll(names[i], lastNames[i], nicknames[i],
 			secrets[i], phones[i]);
 	}
 	_count = MAX_CONTACTS;

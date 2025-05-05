@@ -10,14 +10,14 @@ class Contact
 		Contact(void);
 		~Contact(void);
 
-		void SetAll(std::string firstName, std::string lastName, std::string nickName,
+		void setAll(std::string firstName, std::string lastName, std::string nickName,
 				std::string darkestSecret, std::string phoneNumber);
 
-		std::string	GetFirstName() const;
-		std::string	GetLastName() const;
-		std::string	GetNickName() const;
-		std::string	GetDarkestSecret() const;
-		std::string	GetPhoneNumber() const;
+		std::string	getFirstName() const;
+		std::string	getLastName() const;
+		std::string	getNickName() const;
+		std::string	getDarkestSecret() const;
+		std::string	getPhoneNumber() const;
 
 	private:
 		std::string	_firstName;

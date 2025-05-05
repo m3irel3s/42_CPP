@@ -3,7 +3,7 @@
 Contact::Contact(){}
 Contact::~Contact(){}
 
-void Contact::SetAll(std::string firstName, std::string lastName, std::string nickName,
+void Contact::setAll(std::string firstName, std::string lastName, std::string nickName,
 	std::string darkestSecret, std::string phoneNumber){
 		this->_firstName = firstName;
 		this->_lastName = lastName;
@@ -12,27 +12,27 @@ void Contact::SetAll(std::string firstName, std::string lastName, std::string ni
 		this->_phoneNumber = phoneNumber;
 }
 
-std::string	Contact::GetFirstName() const
+std::string	Contact::getFirstName() const
 {
 	return _firstName;
 }
 
-std::string	Contact::GetLastName() const 
+std::string	Contact::getLastName() const 
 {
 	return _lastName;
 }
 
-std::string	Contact::GetNickName() const
+std::string	Contact::getNickName() const
 {
 	return _nickName;
 }
 
-std::string	Contact::GetDarkestSecret() const
+std::string	Contact::getDarkestSecret() const
 {
 	return _darkestSecret;
 }
 
-std::string	Contact::GetPhoneNumber() const
+std::string	Contact::getPhoneNumber() const
 {
 	return _phoneNumber;
 }

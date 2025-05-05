@@ -11,10 +11,10 @@ class PhoneBook
 		PhoneBook();
 		~PhoneBook();
 
-		void	AddContact();
-		void	SearchContact();
+		void	addContact();
+		void	searchContact();
 
-		void	FillContacts();
+		void	fillContacts();
 
 	private:
 		Contact	_contacts[MAX_CONTACTS];

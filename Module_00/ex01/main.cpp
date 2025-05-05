@@ -3,22 +3,22 @@
 
 #include "PhoneBook.hpp"
 
-static void	PrintMenu(void);
+static void	printMenu(void);
 
 int main(void)
 {
 	std::string cmd;
 	PhoneBook phoneBook;
 
-	// phoneBook.FillContacts();
+	// phoneBook.fillContacts();
 	while (!std::cin.eof())
 	{
-		PrintMenu();
+		printMenu();
 		std::getline(std::cin, cmd);
 		if (cmd == "ADD")
-			phoneBook.AddContact();
+			phoneBook.addContact();
 		else if (cmd == "SEARCH")
-			phoneBook.SearchContact();
+			phoneBook.searchContact();
 		else if (cmd == "EXIT")
 			break ;
 		else
@@ -26,7 +26,7 @@ int main(void)
 	}
 }
 
-static void	PrintMenu(void)
+static void	printMenu(void)
 {
 	std::cout << "\n\t      MENU\n" << std::endl;
 	std::cout << " --------------------------------" << std::endl;
