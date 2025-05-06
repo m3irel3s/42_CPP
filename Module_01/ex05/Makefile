@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/05/06 20:38:41 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/06 21:21:29 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ MKDIR       = mkdir -p
 
 BUILD_PATH  = .build
 
-SRCS        = main.cpp 
+SRCS        = main.cpp \
+			Harl.cpp
 
 INCLUDES    = -I.
 OBJS        = $(SRCS:%.cpp=$(BUILD_PATH)/%.o)
