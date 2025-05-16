@@ -4,7 +4,6 @@ static void HarlFilter(std::string level, Harl &harl);
 
 int main(int argc, char **argv)
 {
-	(void)argv;
 	Harl harl;
 	std::string level;
 
@@ -34,22 +33,13 @@ static void HarlFilter(std::string level, Harl &harl)
 	switch (index)
 	{
 		case DEBUG:
-			harl.complain("DEBUG");
-			harl.complain("INFO");
-			harl.complain("WARNING");
-			harl.complain("ERROR");
-			break;
+			harl.complain(levels[index++]);
 		case INFO:
-			harl.complain("INFO");
-			harl.complain("WARNING");
-			harl.complain("ERROR");
-			break;
+			harl.complain(levels[index++]);
 		case WARNING:
-			harl.complain("WARNING");
-			harl.complain("ERROR");
-			break;
+			harl.complain(levels[index++]);
 		case ERROR:
-			harl.complain("ERROR");
+			harl.complain(levels[index++]);
 			break;
 		default:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
