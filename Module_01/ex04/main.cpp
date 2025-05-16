@@ -1,6 +1,6 @@
 #include "SedLosers.hpp"
 
-void	Replace(std::ifstream &file, char **argv);
+static void Replace(std::ifstream &file, char **argv, std::string s1, std::string s2);
 
 int main(int argc, char **argv)
 {
@@ -9,24 +9,33 @@ int main(int argc, char **argv)
 		std::cout << "Program must take 3 params" << std::endl;
 		return 1;
 	}
+
 	std::ifstream file(argv[1]);
+
 	if (!file.is_open())
 	{
 		std::cout << "Error opening file" << std::endl;
 		return 1;
 	}
-	Replace(file, argv);
+
+	std::string s1 = argv[2];
+	std::string s2 = argv[3];
+
+	if (s1.length() < 1 || s2.length() < 1)
+	{
+		std::cout << "Invalid arguments given" << std::endl;
+		return 1;
+	}
+
+	Replace(file, argv, s1, s2);
 	file.close();
 	return 0;
 }
 
-void Replace(std::ifstream &file, char **argv)
+static void Replace(std::ifstream &file, char **argv, std::string s1, std::string s2)
 {
 	std::string outFileName = std::string(argv[1]) + ".replace";
 	std::ofstream outfile(outFileName.c_str());
-
-	std::string s1 = argv[2];
-	std::string s2 = argv[3];
 	std::string line;
 
 	while (std::getline(file, line))
