@@ -15,7 +15,6 @@ class PhoneBook
 		void	searchContact();
 
 		void	fillContacts();
-
 	private:
 		Contact	_contacts[MAX_CONTACTS];
 		size_t	_count;

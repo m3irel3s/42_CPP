@@ -9,6 +9,7 @@ PhoneBook::~PhoneBook(){};
 
 static std::string	trimContactField(std::string str);
 static void			printSearchMenu();
+static bool			isValidField(std::string str);
 
 void PhoneBook::addContact()
 {
@@ -35,11 +36,27 @@ void PhoneBook::addContact()
 		return ;
 	}
 
+	if (!isValidField(firstName) || !isValidField(lastName) ||
+	!isValidField(nickName) || !isValidField(phoneNumber) ||
+	!isValidField(darkestSecret))
+	{
+		std::cout << "\n\tA Contact cannot have non printable characters" << std::endl;
+		return ;
+	}
+
 	_contacts[index].setAll(firstName, lastName, nickName, darkestSecret,
 	phoneNumber);
 	_count++;
 
 	std::cout << "\nContact added successfully!" << std::endl;
+}
+
+static bool isValidField(std::string str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+		if (!std::isprint(str[i]))
+			return (false);
+	return (true);
 }
 
 void PhoneBook::searchContact()
