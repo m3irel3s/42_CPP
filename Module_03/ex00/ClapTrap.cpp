@@ -15,7 +15,7 @@ ClapTrap::ClapTrap()
 	_hitPoints = 10;
 	_energyPoints = 10;
 	_attackDamage = 0;
-	std::cout << "ClapTrap default constructor called" << std::endl;
+	std::cout << "ClapTrap default constructor called for " << _name << std::endl;
 } 
 
 ClapTrap::ClapTrap(std::string name)
@@ -24,13 +24,13 @@ ClapTrap::ClapTrap(std::string name)
 	_hitPoints = 10;
 	_energyPoints = 10;
 	_attackDamage = 0;
-	std::cout << "ClapTrap name constructor called" << std::endl;
+	std::cout << "ClapTrap name constructor called for " << _name << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
 	*this = copy;
-	std::cout << "ClapTrap copy constructor called" << std::endl;
+	std::cout << "ClapTrap copy constructor called for " << _name << std::endl;
 }
 
 // =====================
@@ -46,7 +46,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &copy)
 		_energyPoints = copy._energyPoints;
 		_attackDamage = copy._attackDamage;
 	}
-	std::cout << "ClapTrap copy assignment operator constructor called" << std::endl;
+	std::cout << "ClapTrap copy assignment operator called for " << _name << std::endl;
 	return *this;
 }
 
@@ -63,22 +63,22 @@ void ClapTrap::attack(const std::string &target)
 	std::cout << "ClapTrap " << _name
 				<< " attacks " << target <<
 				", causing " << _attackDamage
-				<< " points of damage" << std::endl;
+				<< " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << _name << " has no hit points left" << std::endl;
+		std::cout << "ClapTrap " << _name << " has no hit points left!" << std::endl;
 		return ;
 	}
 	_hitPoints -= amount;
-	if (_hitPoints <= 0)
+	if (_hitPoints < 0)
 		_hitPoints = 0;
 	std::cout << "ClapTrap " << _name
 				<< " takes " << amount
-				<< " damage" << std::endl;
+				<< " points of damage!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -114,16 +114,16 @@ void ClapTrap::setAttackDamage(int attackDamage) { _attackDamage = attackDamage;
 // Utils
 // =====================
 
-bool ClapTrap::hasPoints()
+bool ClapTrap::hasPoints() const
 {
 	if (_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << _name << " has no hit points left" << std::endl;
+		std::cout << "ClapTrap " << _name << " has no hit points left!" << std::endl;
 		return false;
 	}
 	if (_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << _name << " has no energy points left" << std::endl;
+		std::cout << "ClapTrap " << _name << " has no energy points left!" << std::endl;
 		return false;
 	}
 	return true;

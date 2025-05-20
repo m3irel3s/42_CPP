@@ -27,7 +27,7 @@ class ClapTrap
 		void setEnergyPoints(int energyPoints);
 		void setAttackDamage(int attackDamage);
 
-		bool hasPoints();
+		bool hasPoints() const;
 
 	private:
 		std::string _name;
