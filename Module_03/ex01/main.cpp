@@ -9,7 +9,13 @@ int main(void)
 	std::cout << miguel.getName() << " hit points: " << miguel.getHitPoints() << std::endl;
 	std::cout << miguel.getName() << " energy points: " << miguel.getEnergyPoints() << std::endl;
 	std::cout << miguel.getName() << " attack damage: " << miguel.getAttackDamage() << std::endl;
+	printSep();
 	miguel.guardGate();
+	miguel.attack("John");
+	printSep();
+	std::cout << miguel.getName() << " hit points: " << miguel.getHitPoints() << std::endl;
+	std::cout << miguel.getName() << " energy points: " << miguel.getEnergyPoints() << std::endl;
+	std::cout << miguel.getName() << " attack damage: " << miguel.getAttackDamage() << std::endl;
 	printSep();
 }
 
