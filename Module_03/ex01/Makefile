@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/05/20 13:37:43 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/21 14:08:22 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,20 +46,6 @@ $(BUILD_PATH)/%.o: %.cpp
 
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
-
-test: all $(BUILD_PATH)
-	tmux set-option remain-on-exit on
-	@echo "[$(YEL)Running $(GRN)$(NAME)$(YEL) tests$(D)]"
-	@echo "$(YEL)$(_SEP)$(D)"
-	@echo "$(CYA)$(NAME)$(D): $(MAG)Get Output$(D)"
-	./$(NAME) > $(BUILD_PATH)/test_out.txt
-	sed 's/\[[^]]*\] //' ./19920104_091532.log > $(BUILD_PATH)/reflog.txt
-	sed 's/\[[^]]*\] //' $(BUILD_PATH)/test_out.txt > $(BUILD_PATH)/trim.txt
-	tmux split-window -h "cat ./19920104_091532.log"
-	tmux split-window -h "cat $(BUILD_PATH)/test_out.txt"
-	@echo "$(CYA)$(NAME)$(D): $(MAG)Get Diff$(D)"
-	diff $(BUILD_PATH)/trim.txt $(BUILD_PATH)/reflog.txt
-	@echo "$(YEL)$(_SEP)$(D)"
 
 #==============================================================================#
 #                                  DEBUGGING                                   #
