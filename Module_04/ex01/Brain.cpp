@@ -20,6 +20,10 @@ Brain::Brain(const Brain &copy)
 	std::cout << "Brain copy constructor called" << std::endl;
 }
 
+// ==========
+// Operator Overload
+// ==========
+
 Brain &Brain::operator=(const Brain &copy)
 {
 	if (this != &copy)
@@ -30,3 +34,19 @@ Brain &Brain::operator=(const Brain &copy)
 	return *this;
 }
 
+// ==========
+// Setters & Getters
+// ==========
+
+void Brain::setIdea(int index, const std::string &idea)
+{
+	if (index >= 0 && index <= MAX_IDEAS)
+		_ideas[index] = idea;
+}
+
+std::string Brain::getIdea(int index) const
+{
+	if (index >= 0 && index <= MAX_IDEAS)
+		return _ideas[index];
+	return "";
+}

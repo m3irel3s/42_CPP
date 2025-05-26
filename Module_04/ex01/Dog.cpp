@@ -48,4 +48,8 @@ void Dog::makeSound() const
 	std::cout << _type << " does woooof!" << std::endl;
 }
 
+// ==========
+// Getters & Setters
+// ==========
 
+Brain *Dog::getBrain() const { return _brain; }

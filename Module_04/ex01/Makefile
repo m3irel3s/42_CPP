@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/05/22 11:24:26 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/26 10:45:32 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS        = main.cpp \
               Dog.cpp \
               Cat.cpp \
               WrongAnimal.cpp \
-              WrongCat.cpp
+              WrongCat.cpp \
+              Brain.cpp
 
 
 INCLUDES    = -I.
