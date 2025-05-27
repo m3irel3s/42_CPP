@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/30 11:01:31 by jmeirele          #+#    #+#              #
-#    Updated: 2025/05/26 13:59:34 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/05/27 15:09:02 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME        = interface
 #                                FLAGS & COMMANDS                              #
 #==============================================================================#
 
-CPP         = c++
+CPP         = g++
 CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98
 RM          = rm -fr
 MKDIR       = mkdir -p
@@ -28,8 +28,11 @@ MKDIR       = mkdir -p
 BUILD_PATH  = .build
 
 SRCS        = main.cpp \
-            
-
+              AMateria.cpp \
+              Character.cpp \
+              Cure.cpp \
+              Ice.cpp \
+              MateriaSource.cpp
 
 INCLUDES    = -I.
 OBJS        = $(SRCS:%.cpp=$(BUILD_PATH)/%.o)

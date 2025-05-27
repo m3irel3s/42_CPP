@@ -72,14 +72,25 @@ const std::string &Character::getName() const { return _name; }
 
 void Character::equip(AMateria *m)
 {
-	int i = 0;
-	while (_inventory[i] != NULL)
-		i++;
-	if (i < MAX_SLOTS)
-		_inventory[i] = m;
-	else
-		std::cout << "Inventory full" << std::endl;
-	std::cout << "Materia: " << m->getType() << " added successfully to index: " << i << std::endl;
+	if (!m)
+	{
+		std::cout << "Couldnt equip NULL materia" << std::endl;
+		return ;
+	}
+	for (int i = 0; i < MAX_SLOTS; i++)
+	{
+		if (_inventory[i] == NULL)
+		{
+			_inventory[i] = m;
+			std::cout << "Materia: " << _inventory[i]->getType() << " equiped successfully to index: " << i << std::endl;
+			return ;
+		}
+		if (i == 3 && _inventory[i])
+		{
+			std::cout << "Inventory full" << std::endl;
+			return ;
+		}
+	}
 }
 
 void Character::unequip(int idx)
@@ -87,17 +98,18 @@ void Character::unequip(int idx)
 	if (idx < 0 || idx >= MAX_SLOTS)
 		std::cout << "Invalid idx given to Materia unequip: " << idx << std::endl;
 	else
+	{
 		_inventory[idx] = NULL;
+		std::cout << "Successfully removed Materia index: " << idx << std::endl;
+	}
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-
+	if (idx < 0 || idx >= MAX_SLOTS)
+		std::cout << "Invalid idx given to Materia use: " << idx << std::endl;
+	else if (_inventory[idx] == NULL)
+		std::cout << "Inventory in :" << idx << " position is empty" << std::endl;
+	else
+		_inventory[idx]->use(target);
 }
-
-
-
-
-
-
-
