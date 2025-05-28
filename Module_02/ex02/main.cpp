@@ -10,6 +10,16 @@ int main( void )
 	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::max( 11, b ) << std::endl;
 	return 0;
 }
+
+// int main(void)
+// {
+// 	Fixed a(1);
+// 	std::cout << a << std::endl;
+// 	std::cout << a + a << std::endl;
+// 	std::cout << a++ << std::endl;
+// 	std::cout << a << std::endl;
+// 	std::cout << ++a << std::endl;
+// }

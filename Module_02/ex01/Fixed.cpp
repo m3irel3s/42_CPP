@@ -19,12 +19,13 @@ Fixed &Fixed::operator=(const Fixed &copy)
 	}
 	return *this;
 }
-
+// * 2^8
 Fixed::Fixed(const int value)
 {
 	_value = (value << _fractionalBits);
 }
 
+// roundf (value * 2^8)
 Fixed::Fixed(const float value)
 {
 	_value = (roundf(value * (1 << _fractionalBits)));
@@ -40,11 +41,13 @@ void Fixed::setRawBits(int const raw)
 	_value = raw;
 }
 
+// value / 2^8
 float Fixed::toFloat(void) const
 {
-	return (float)_value / (1 << _fractionalBits);
+	return static_cast<float>(_value) / (1 << _fractionalBits);
 }
 
+// value / 2^8
 int Fixed::toInt(void) const
 {
 	return _value >> _fractionalBits;
