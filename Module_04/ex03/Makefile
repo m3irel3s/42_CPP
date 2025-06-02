@@ -16,7 +16,7 @@ NAME        = interface
 #                                FLAGS & COMMANDS                              #
 #==============================================================================#
 
-CPP         = g++
+CPP         = c++
 CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98
 RM          = rm -fr
 MKDIR       = mkdir -p
