@@ -30,16 +30,17 @@ int main() {
 	{
 		std::string type = animals[i]->getType();
 
-		if (type == "Dog") {
+		if (type == "Dog")
+		{
 			Brain* brain = static_cast<Dog*>(animals[i])->getBrain();
-			for (int j = 0; j < MAX_IDEAS; j++) {
+			for (int j = 0; j < MAX_IDEAS; j++)
 				brain->setIdea(j, "Dog idea");
-			}
-		} else if (type == "Cat") {
+		}
+		else if (type == "Cat")
+		{
 			Brain* brain = static_cast<Cat*>(animals[i])->getBrain();
-			for (int j = 0; j < MAX_IDEAS; j++) {
+			for (int j = 0; j < MAX_IDEAS; j++)
 				brain->setIdea(j, "Cat idea");
-			}
 		}
 	}
 

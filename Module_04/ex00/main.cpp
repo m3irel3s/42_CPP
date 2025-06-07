@@ -52,7 +52,6 @@ static void printSep(void)
 	std::cout << "----------------------------------" << std::endl;
 }
 
-
 // ======== 
 // Subject Main
 // ========

@@ -9,14 +9,15 @@ WrongCat::~WrongCat()
 	std::cout << "Wrong Cat destructor called for " << _type << std::endl;
 }
 
-WrongCat::WrongCat() : WrongAnimal()
+WrongCat::WrongCat()
 {
 	_type = "WrongCat";
 	std::cout << "Wrong Cat default constructor called for " << _type << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
+WrongCat::WrongCat(const WrongCat &copy)
 {
+	*this = copy;
 	std::cout << "Wrong Cat copy constructor called for " << _type << std::endl;
 }
 
