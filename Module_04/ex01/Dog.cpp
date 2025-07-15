@@ -10,14 +10,14 @@ Dog::~Dog()
 	std::cout << "Dog destructor called for " << _type << std::endl;
 }
 
-Dog::Dog() : Animal()
+Dog::Dog()
 {
 	_type = "Dog";
 	_brain = new Brain();
 	std::cout << "Dog default constructor called for " << _type << std::endl;
 }
 
-Dog::Dog(const Dog &copy) : Animal(copy)
+Dog::Dog(const Dog &copy)
 {
 	_type = copy._type;
 	_brain = new Brain(*copy._brain);

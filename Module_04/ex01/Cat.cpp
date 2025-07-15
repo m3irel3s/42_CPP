@@ -10,14 +10,14 @@ Cat::~Cat()
 	std::cout << "Cat destructor called for " << _type << std::endl;
 }
 
-Cat::Cat() : Animal()
+Cat::Cat()
 {
 	_type = "Cat";
 	_brain = new Brain();
 	std::cout << "Cat default constructor called for " << _type << std::endl;
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy)
+Cat::Cat(const Cat &copy)
 {
 	_type = copy._type;
 	_brain = new Brain(*copy._brain);

@@ -9,13 +9,13 @@ Dog::~Dog()
 	std::cout << "Dog destructor called for " << _type << std::endl;
 }
 
-Dog::Dog() : Animal()
+Dog::Dog()
 {
 	_type = "Dog";
 	std::cout << "Dog default constructor called for " << _type << std::endl;
 }
 
-Dog::Dog(const Dog &copy) : Animal(copy)
+Dog::Dog(const Dog &copy)
 {
 	*this = copy;
 	std::cout << "Dog copy constructor called for " << _type << std::endl;

@@ -9,13 +9,13 @@ Cat::~Cat()
 	std::cout << "Cat destructor called for " << _type << std::endl;
 }
 
-Cat::Cat() : Animal()
+Cat::Cat()
 {
 	_type = "Cat";
 	std::cout << "Cat default constructor called for " << _type << std::endl;
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy)
+Cat::Cat(const Cat &copy)
 {
 	*this = copy;
 	std::cout << "Cat copy constructor called for " << _type << std::endl;
