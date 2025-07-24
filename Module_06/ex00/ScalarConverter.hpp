@@ -55,14 +55,13 @@ class ScalarConverter
 		static bool isDouble(const std::string &literal);
 		static bool isPseudo(const std::string &literal);
 
-		static void printResult(const ScalarResult &res);
-
 		static ScalarResult convertFromChar(const std::string &literal);
 		static ScalarResult convertFromInt(const std::string &literal);
 		static ScalarResult convertFromFloat(const std::string &literal);
 		static ScalarResult convertFromDouble(const std::string &literal);
 		static ScalarResult convertFromPseudo(const std::string &literal);
-
+		
 		static void fillCharIntFromDouble(double val, ScalarResult &res);
 		static ScalarResult impossible(ScalarResult &res);
+		static void printResult(const ScalarResult &res);
 };

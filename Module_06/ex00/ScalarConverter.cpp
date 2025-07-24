@@ -6,14 +6,12 @@ ScalarConverter::~ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &copy)
 {
-	*this = copy;
+	(void)copy;
 }
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy)
 {
-	if (this == &copy)
-		return *this;
-	*this = copy;
+	(void)copy;
 	return *this;
 }
 
