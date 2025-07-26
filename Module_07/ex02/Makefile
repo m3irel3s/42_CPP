@@ -6,11 +6,11 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/12 20:09:59 by jmeirele          #+#    #+#              #
-#    Updated: 2025/07/25 00:03:14 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/07/26 19:01:58 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = serialize
+NAME        = array
 
 #==============================================================================#
 #                                FLAGS & COMMANDS                              #
@@ -28,7 +28,7 @@ MKDIR       = mkdir -p
 BUILD_PATH  = .build
 
 SRCS        = main.cpp \
-              Serializer.cpp
+
 
 
 INCLUDES    = -I.
