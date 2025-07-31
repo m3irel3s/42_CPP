@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/12 20:09:59 by jmeirele          #+#    #+#              #
-#    Updated: 2025/07/31 18:23:32 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/07/31 23:47:27 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME        = mutated
 #                                FLAGS & COMMANDS                              #
 #==============================================================================#
 
-CPP         = g++
+CPP         = c++
 CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98
 RM          = rm -fr
 MKDIR       = mkdir -p

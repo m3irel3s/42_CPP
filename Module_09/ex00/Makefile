@@ -6,11 +6,11 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/12 20:09:59 by jmeirele          #+#    #+#              #
-#    Updated: 2025/07/31 23:47:25 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/07/31 23:47:05 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = span
+NAME        = btc
 
 #==============================================================================#
 #                                FLAGS & COMMANDS                              #
@@ -28,8 +28,7 @@ MKDIR       = mkdir -p
 BUILD_PATH  = .build
 
 SRCS        = main.cpp \
-              Span.cpp
-
+              BitcoinExchange.cpp
 
 INCLUDES    = -I.
 OBJS        = $(SRCS:%.cpp=$(BUILD_PATH)/%.o)
