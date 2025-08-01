@@ -1,8 +1,15 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <float.h>
+#include <algorithm>
 #include <vector>
 #include <map>
+#include <cerrno>
+#include <climits>
+#include <cfloat>
 
 class BitcoinExchange
 {
@@ -20,8 +27,8 @@ class BitcoinExchange
 		std::map<std::string, float> _data;
 
 		bool isValidDate(const std::string &date) const;
-		bool isValidValue(const std::string &valueStr) const;
-		bool isLeapYear(int year);
-		std::string trim(const std::string &str) const;
+		bool isLeapYear(int year) const;
+		bool parseInputLine(const std::string &line, std::string &date, float &value) const;
+		void computeBTCValue(const std::string &date, float value) const;
 
 };
