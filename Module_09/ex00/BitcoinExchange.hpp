@@ -30,5 +30,4 @@ class BitcoinExchange
 		bool isLeapYear(int year) const;
 		bool parseInputLine(const std::string &line, std::string &date, float &value) const;
 		void computeBTCValue(const std::string &date, float value) const;
-
 };
