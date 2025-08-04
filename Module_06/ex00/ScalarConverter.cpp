@@ -20,7 +20,7 @@ ScalarResult ScalarConverter::initScalarResult()
 	ScalarResult res;
 
 	res.c = 0;
-	res.d = 0;
+	res.i = 0;
 	res.f = 0.0f;
 	res.d = 0.0;
 
@@ -40,7 +40,7 @@ void ScalarConverter::convert(const std::string &literal)
 		return ;
 
 	Type type = detectType(literal);
-	ScalarResult res = initScalarResult();
+	ScalarResult res;
 
 	std::cout << "Detected type: ";
 	switch (type)
@@ -197,7 +197,7 @@ void ScalarConverter::printResult(const ScalarResult &res)
 
 ScalarResult ScalarConverter::convertFromPseudo(const std::string &literal)
 {
-	ScalarResult res;
+	ScalarResult res = initScalarResult();
 
 	res.charImpossible = true;
 	res.intImpossible = true;
@@ -223,7 +223,7 @@ ScalarResult ScalarConverter::convertFromPseudo(const std::string &literal)
 
 ScalarResult ScalarConverter::convertFromInt(const std::string &literal)
 {
-	ScalarResult res;
+	ScalarResult res = initScalarResult();
 
 	char *endptr;
 	errno = 0;
@@ -245,7 +245,7 @@ ScalarResult ScalarConverter::convertFromInt(const std::string &literal)
 
 ScalarResult ScalarConverter::convertFromChar(const std::string &literal)
 {
-	ScalarResult res;
+	ScalarResult res = initScalarResult();
 
 	res.c = literal[0];
 	res.i = static_cast<int>(literal[0]);
@@ -260,7 +260,7 @@ ScalarResult ScalarConverter::convertFromChar(const std::string &literal)
 
 ScalarResult ScalarConverter::convertFromFloat(const std::string &literal)
 {
-	ScalarResult res;
+	ScalarResult res = initScalarResult();
 
 	std::string temp = literal.substr(0, literal.length() - 1);
 
@@ -285,7 +285,7 @@ ScalarResult ScalarConverter::convertFromFloat(const std::string &literal)
 
 ScalarResult ScalarConverter::convertFromDouble(const std::string &literal)
 {
-	ScalarResult res;
+	ScalarResult res = initScalarResult();
 
 	char* endptr;
 	errno = 0;
