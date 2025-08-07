@@ -44,17 +44,10 @@ int Span::longestSpan() const
 	if (_numbers.size() <= 1)
 		throw SpanNotFoundException();
 
-	std::vector<int> sorted = _numbers;
-	std::sort(sorted.begin(), sorted.end());
+	int minVal = *std::min_element(_numbers.begin(), _numbers.end());
+	int maxVal = *std::max_element(_numbers.begin(), _numbers.end());
 
-	int longest = std::abs(sorted[1] - sorted[0]);
-	for (size_t i = 2; i < sorted.size(); i++)
-	{
-		int current = std::abs(sorted[i] - sorted[i - 1]);
-		if (current > longest)
-			longest = current;
-	}
-	return longest;
+	return maxVal - minVal;
 }
 
 int Span::shortestSpan() const
