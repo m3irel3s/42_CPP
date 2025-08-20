@@ -35,7 +35,7 @@ int main(void)
 	try
 	{
 		Span span(3);
-		span.addNumber(1);
+		span.addNumber(5);
 		span.addNumber(1);
 		span.addNumber(1);
 		span.addNumber(1);
