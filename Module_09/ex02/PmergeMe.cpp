@@ -57,12 +57,12 @@ void PmergeMe::sortAndPrint()
 	displayBefore();
 
 	clock_t startVector = clock();
-	mergeInsertVector();
+	fordJohnsonVector(_vector);
 	clock_t endVector = clock();
 	double durationVector = static_cast<double>(endVector - startVector) / CLOCKS_PER_SEC * 1e6;
 
 	clock_t startDeque = clock();
-	mergeInsertDeque();
+	fordJohnsonDeque(_deque);
 	clock_t endDeque = clock();
 	double durationDeque = static_cast<double>(endDeque - startDeque) / CLOCKS_PER_SEC * 1e6;
 
@@ -74,86 +74,178 @@ void PmergeMe::sortAndPrint()
 		<< " elements with std::deque: " << durationDeque << " us" << std::endl;
 }
 
-void PmergeMe::mergeInsertVector() {
-	if (_vector.size() <= 1)
+// J(N) = J(N -1) + 2 * J(N -2)
+// J(2) = J(1) + 2 * J(0) = 1 + 2 * 0 = 1. 
+// J(3) = J(2) + 2 * J(1) = 1 + 2 * 1 = 3. 
+// J(4) = J(3) + 2 * J(2) = 3 + 2 * 1 = 5. 
+// J(5) = J(4) + 2 * J(3) = 5 + 2 * 3 = 11. 
+// {0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, ...}
+
+std::vector<int> PmergeMe::jacobsthalSequence(int size)
+{
+	std::vector<int> jacNumbers;
+	int a = 0;
+	int b = 1;
+	while (b < size)
+	{
+		jacNumbers.push_back(b);
+		int next = b + 2 * a;
+		a = b;
+		b = next;
+	}
+	return jacNumbers;
+}
+
+std::vector<int> PmergeMe::generateInsertionOrder(int size)
+{
+	std::vector<int> order;
+	std::vector<int> jac = jacobsthalSequence(size);
+	std::vector<bool> selected(size, false);
+
+	for (size_t i = 0; i < jac.size(); ++i)
+	{
+		if (!selected[jac[i]])
+		{
+			order.push_back(jac[i]);
+			selected[jac[i]] = true;
+		}
+	}
+	for (int i = 0; i < size; ++i)
+	{
+		if (!selected[i])
+			order.push_back(i);
+	}
+	return order;
+}
+
+void PmergeMe::fordJohnsonVector(std::vector<int> &vec)
+{
+	if (vec.size() <= 1)
 		return;
 
 	std::vector<std::pair<int, int> > pairs;
-	std::vector<int> sorted;
+	std::vector<int> leftovers;
 
-	// Step 1: Create and normalize pairs
-	for (size_t i = 0; i + 1 < _vector.size(); i += 2) {
-		int a = _vector[i];
-		int b = _vector[i + 1];
+	// Create and normalize pairs
+	for (size_t i = 0; i + 1 < vec.size(); i += 2)
+	{
+		int a = vec[i];
+		int b = vec[i + 1];
 		if (a < b)
-		{
-			int tmp = a;
-			a = b;
-			b = tmp;
-		}
+			std::swap(a, b);
 		pairs.push_back(std::make_pair(a, b));
 	}
 
-	// Step 2: Insert all the "greater" (first) values
-	for (size_t i = 0; i < pairs.size(); ++i)
-		sorted.push_back(pairs[i].first);
+	// Handling odd size
+	if (vec.size() % 2 == 1)
+		leftovers.push_back(vec.back());
 
-	std::sort(sorted.begin(), sorted.end());
+	// Separate larger and smaller elements
+	std::vector<int> larger;
+	std::vector<int> smaller;
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		larger.push_back(pairs[i].first);
+		smaller.push_back(pairs[i].second);
+	}
 
-	// Step 3: Binary insert the "lesser" (second) values
-	for (size_t i = 0; i < pairs.size(); ++i)
-		binaryInsertVector(sorted, pairs[i].second);
+	fordJohnsonVector(larger);
 
-	// Step 4: Handle leftover element if size is odd
-	if (_vector.size() % 2 == 1)
-		binaryInsertVector(sorted, _vector.back());
+	std::vector<int> mainChain = larger;
 
-	_vector = sorted;
+	std::vector<int> order = generateInsertionOrder(smaller.size());
+	for (size_t i = 0; i < order.size(); i++)
+	{
+		size_t index = order[i];
+		if (index < smaller.size())
+			binaryInsertVector(mainChain, smaller[index]);
+	}
+
+	for (size_t i = 0; i < leftovers.size(); i++)
+		binaryInsertVector(mainChain, leftovers[i]);
+
+	vec = mainChain;
 }
 
-void binaryInsertVector(std::vector<int>& sorted, int value)
+void PmergeMe::fordJohnsonDeque(std::deque<int> &deque)
 {
-	std::vector<int>::iterator it = std::lower_bound(sorted.begin(), sorted.end(), value);
-	sorted.insert(it, value);
-}
-
-void PmergeMe::mergeInsertDeque() {
-	if (_deque.size() <= 1)
+	if (deque.size() <= 1)
 		return;
 
-	std::vector<std::pair<int, int> > pairs;
-	std::deque<int> sorted;
+	std::deque<std::pair<int, int> > pairs;
+	std::deque<int> leftovers;
 
-	for (size_t i = 0; i + 1 < _deque.size(); i += 2) {
-		int a = _deque[i];
-		int b = _deque[i + 1];
+	// Create and normalize pairs
+	for (size_t i = 0; i + 1 < deque.size(); i += 2)
+	{
+		int a = deque[i];
+		int b = deque[i + 1];
 		if (a < b)
-		{
-			int tmp = a;
-			a = b;
-			b = tmp;
-		}
+			std::swap(a, b);
 		pairs.push_back(std::make_pair(a, b));
 	}
 
-	for (size_t i = 0; i < pairs.size(); ++i)
-		sorted.push_back(pairs[i].first);
+	// Handling odd size
+	if (deque.size() % 2 == 1)
+		leftovers.push_back(deque.back());
 
-	std::sort(sorted.begin(), sorted.end());
+	// Separate larger and smaller elements
+	std::deque<int> larger;
+	std::deque<int> smaller;
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		larger.push_back(pairs[i].first);
+		smaller.push_back(pairs[i].second);
+	}
 
-	for (size_t i = 0; i < pairs.size(); ++i)
-		binaryInsertDeque(sorted, pairs[i].second);
+	fordJohnsonDeque(larger);
 
-	if (_deque.size() % 2 == 1)
-		binaryInsertDeque(sorted, _deque.back());
+	std::deque<int> mainChain = larger;
 
-	_deque = sorted;
+	std::vector<int> order = generateInsertionOrder(smaller.size());
+	for (size_t i = 0; i < order.size(); i++)
+	{
+		size_t index = order[i];
+		if (index < smaller.size())
+			binaryInsertDeque(mainChain, smaller[index]);
+	}
+
+	for (size_t i = 0; i < leftovers.size(); i++)
+		binaryInsertDeque(mainChain, leftovers[i]);
+
+	deque = mainChain;
 }
 
-void binaryInsertDeque(std::deque<int>& sorted, int value)
+void PmergeMe::binaryInsertVector(std::vector<int> &vec, int value)
 {
-	std::deque<int>::iterator it = std::lower_bound(sorted.begin(), sorted.end(), value);
-	sorted.insert(it, value);
+	size_t left = 0;
+	size_t right = vec.size();
+
+	while (left < right)
+	{
+		size_t mid = (left + right) / 2;
+		if (value < vec[mid])
+			right = mid;
+		else
+			left = mid + 1;
+	}
+	vec.insert(vec.begin() + left, value);
+}
+
+void PmergeMe::binaryInsertDeque(std::deque<int> &deque, int value)
+{
+	size_t left = 0;
+	size_t right = deque.size();
+
+	while (left < right)
+	{
+		size_t mid = (left + right) / 2;
+		if (value < deque[mid])
+			right = mid;
+		else
+			left = mid + 1;
+	}
+	deque.insert(deque.begin() + left, value);
 }
 
 void PmergeMe::displayBefore()
